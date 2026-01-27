@@ -1,5 +1,8 @@
 ﻿using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Domain.Entities.Common;
+using ETicaretAPI.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,33 +11,55 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Persistence.Repositories
 {
-    public class WriteRepository<T> : IWriteRepository<T> where T : class
+    public class WriteRepository<T> : IWriteRepository<T> where T : BaseEntities
     {
-        public DbSet<T> Table => throw new NotImplementedException();
+        readonly private ETicaretAPIDbContext _context;
 
-        public Task<bool> AddAsync(T model)
+        public WriteRepository(ETicaretAPIDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<bool> AddAsync(List<T> model)
+        public DbSet<T> Table => _context.Set<T>();
+
+        public async Task<bool> AddAsync(T model)
         {
-            throw new NotImplementedException();
+           EntityEntry<T> entityEntry =  await Table.AddAsync(model);
+            return entityEntry.State == EntityState.Added;
         }
 
-        public Task<bool> Remove(T model)
+        public async Task<bool> AddRangeAsync(List<T> model)
         {
-            throw new NotImplementedException();
+            await Table.AddRangeAsync(model);
+            return true;
         }
 
-        public Task<bool> RemoveAsync(Guid id)
+        public bool RemoveRange(List<T> datas)
         {
-            throw new NotImplementedException();
+            Table.RemoveRange(datas);
+            return true;
         }
 
-        public Task<bool> UpdateAsync(T model)
+        public bool Remove(T model)
         {
-            throw new NotImplementedException();
+            EntityEntry<T> entityEntry = Table.Remove(model);
+            return entityEntry.State == EntityState.Deleted;
         }
+
+        public async Task<bool> RemoveAsync(string id)
+        {
+            T model = await Table.FirstOrDefaultAsync(data => data.Id == Guid.Parse(id));
+            return Remove(model);
+        }
+
+        public bool Update(T model)
+        {
+            EntityEntry<T> entityEntry = Table.Update(model);
+            return entityEntry.State == EntityState.Modified;
+        }
+
+        public async Task<int> SaveAsync()
+        => await _context.SaveChangesAsync();
+
     }
 }
