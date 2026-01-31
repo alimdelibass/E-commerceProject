@@ -1,4 +1,5 @@
 ﻿using ETicaretAPI.Domain.Entities;
+using ETicaretAPI.Domain.Entities.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace ETicaretAPI.Persistence.Context
@@ -18,9 +19,18 @@ namespace ETicaretAPI.Persistence.Context
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Payment> Payments { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+       public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken= default)
         {
-            base.OnModelCreating(modelBuilder);
+            var datas = ChangeTracker.Entries<BaseEntities>();
+            foreach (var data in datas)
+            {
+                _ = data.State switch
+                {
+                    EntityState.Added => data.Entity.CreateDate = DateTime.UtcNow,
+                    EntityState.Modified => data.Entity.UpdateDate = DateTime.UtcNow,
+                };
+            }
+            return await base.SaveChangesAsync(cancellationToken);
         }
     }
 }
