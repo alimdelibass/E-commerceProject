@@ -19,18 +19,34 @@ namespace ETicaretAPI.Persistence.Context
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Payment> Payments { get; set; }
 
-       public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken= default)
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            var datas = ChangeTracker.Entries<BaseEntities>();
-            foreach (var data in datas)
+            var entries = ChangeTracker.Entries<BaseEntities>();
+
+            foreach (var entry in entries)
             {
-                _ = data.State switch
+                switch (entry.State)
                 {
-                    EntityState.Added => data.Entity.CreateDate = DateTime.UtcNow,
-                    EntityState.Modified => data.Entity.UpdateDate = DateTime.UtcNow,
-                };
+                    case EntityState.Added:
+                        entry.Entity.CreateDate = DateTime.UtcNow;
+                        entry.Entity.UpdateDate = DateTime.UtcNow;
+                        entry.Entity.IsDelete = false;
+                        break;
+
+                    case EntityState.Modified:
+                        entry.Entity.UpdateDate = DateTime.UtcNow;
+                        break;
+
+                    case EntityState.Deleted:
+                        entry.State = EntityState.Modified;
+                        entry.Entity.IsDelete = true;
+                        entry.Entity.UpdateDate = DateTime.UtcNow;
+                        break;
+                }
             }
+
             return await base.SaveChangesAsync(cancellationToken);
         }
+
     }
 }
