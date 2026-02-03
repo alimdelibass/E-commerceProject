@@ -1,0 +1,30 @@
+:host {
+	display: block;
+}
+
+.layout-body {
+	display: flex;
+	gap: 16px;
+	padding: 12px;
+}
+
+.layout-sidebar {
+	width: 200px;
+}
+
+.layout-content {
+	flex: 1;
+}
+
+.layout-content main {
+	padding: 8px;
+}
+.admin-container {
+  width: auto;
+  height: 200px;
+  margin: 10px;
+  border: 1px solid #555;
+  /* The background property is added to clearly distinguish the borders between drawer and main
+     content */
+  background: #eee;
+}

@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  border-bottom: 1px solid #ddd;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+}
+
+.top-nav a {
+  margin-left: 12px;
+  text-decoration: none;
+  color: #333;
+}
+
+.top-nav a.active {
+  color: #0a58ca;
+  font-weight: 600;
+}
+
+.brand {
+  font-weight: 700;
+}

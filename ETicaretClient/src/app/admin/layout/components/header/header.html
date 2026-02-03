@@ -1,4 +1,11 @@
-<div style="padding:12px; border-bottom:1px solid #ddd;">
-  BEN HEADER'IM ✅
-</div>
+
+<header class="app-header">
+  <div class="brand">BEN HEADER'IM ✅</div>
+  <nav class="top-nav">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/products" routerLinkActive="active">Products</a>
+    <a routerLink="/basket" routerLinkActive="active">Basket</a>
+    <a routerLink="/admin" routerLinkActive="active">Admin</a>
+  </nav>
+</header>
 
