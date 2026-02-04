@@ -1,13 +1,15 @@
 :host {
   display: block;
   border-bottom: 1px solid #ddd;
+  width: 100%;
 }
 
 .app-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 8px 12px;
+  gap: 24px;
 }
 
 .top-nav a {

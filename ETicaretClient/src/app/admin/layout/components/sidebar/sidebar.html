@@ -1,6 +1,18 @@
-<ul>
-	<li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a></li>
-	<li><a routerLink="customers" routerLinkActive="active">Customers</a></li>
-	<li><a routerLink="products" routerLinkActive="active">Products</a></li>
-	<li><a routerLink="orders" routerLinkActive="active">Orders</a></li>
-</ul>
+<mat-list>
+  <mat-list-item>
+    <mat-icon matListItemIcon>dashboard</mat-icon>
+    <a matLine routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon matListItemIcon>people</mat-icon>
+    <a matLine routerLink="customers" routerLinkActive="active">Customers</a>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon matListItemIcon>inventory_2</mat-icon>
+    <a matLine routerLink="products" routerLinkActive="active">Products</a>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon matListItemIcon>shopping_cart</mat-icon>
+    <a matLine routerLink="orders" routerLinkActive="active">Orders</a>
+  </mat-list-item>
+</mat-list>
