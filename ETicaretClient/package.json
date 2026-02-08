@@ -40,6 +40,7 @@
     "bootstrap": "^5.3.8",
     "express": "^5.1.0",
     "jquery": "^4.0.0",
+    "ngx-spinner": "^21.0.0",
     "ngx-toastr": "^20.0.5",
     "rxjs": "~7.8.0",
     "toastr": "^2.1.4",
@@ -51,7 +52,9 @@
     "@angular/compiler-cli": "^21.0.0",
     "@angular/material": "^21.1.2",
     "@types/express": "^5.0.1",
+    "@types/jquery": "^3.5.33",
     "@types/node": "^20.17.19",
+    "@types/toastr": "^2.1.43",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"

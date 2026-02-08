@@ -1,50 +1,40 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ToastrService, IndividualConfig } from 'ngx-toastr';
+
+declare const toastr: any;
 
 @Injectable({ providedIn: 'root' })
 export class CustomToastrService {
-  constructor(
-    private toastr: ToastrService,
-    @Inject(PLATFORM_ID) private platformId: object
-  ) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   message(
     message: string,
     type: ToastrMessageType = ToastrMessageType.Info,
     title?: string,
     position: ToastrPosition = ToastrPosition.TopRight,
-    options?: Partial<IndividualConfig>
+    options?: Partial<ToastrOptions>
   ): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    const opt: Partial<IndividualConfig> = {
-      timeOut: 3000,
+    // toastr script yüklenmediyse uygulamayı çökertmesin
+    if (typeof toastr === 'undefined') return;
+
+    toastr.options = {
       closeButton: true,
       progressBar: true,
-      positionClass: position, // <-- pozisyon burada
+      preventDuplicates: true,
+      timeOut: 3000,
+      positionClass: position,
       ...options,
     };
 
-    switch (type) {
-      case ToastrMessageType.Success:
-        this.toastr.success(message, title, opt);
-        return;
-      case ToastrMessageType.Warning:
-        this.toastr.warning(message, title, opt);
-        return;
-      case ToastrMessageType.Error:
-        this.toastr.error(message, title, opt);
-        return;
-      default:
-        this.toastr.info(message, title, opt);
-        return;
-    }
+    toastr[type](message, title);
   }
 
   clear(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-    this.toastr.clear();
+    if (typeof toastr === 'undefined') return;
+    toastr.clear();
   }
 }
 
@@ -55,7 +45,6 @@ export enum ToastrMessageType {
   Error = 'error',
 }
 
-// ngx-toastr positionClass değerleri
 export enum ToastrPosition {
   TopRight = 'toast-top-right',
   TopLeft = 'toast-top-left',
@@ -66,3 +55,11 @@ export enum ToastrPosition {
   TopFullWidth = 'toast-top-full-width',
   BottomFullWidth = 'toast-bottom-full-width',
 }
+
+export type ToastrOptions = {
+  closeButton: boolean;
+  progressBar: boolean;
+  preventDuplicates: boolean;
+  timeOut: number;
+  positionClass: string;
+};

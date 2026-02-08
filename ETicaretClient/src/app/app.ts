@@ -1,23 +1,19 @@
-import { Component, signal, inject, PLATFORM_ID, OnInit } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit, inject } from '@angular/core';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr-service';
+import { NgxSpinnerComponent } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, NgxSpinnerComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App implements OnInit {
-  protected readonly title = signal('ETicaretClient');
-
-  private toastr = inject(ToastrService);
-  private platformId = inject(PLATFORM_ID);
+  private toast = inject(CustomToastrService);
 
   ngOnInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-    this.toastr.success('Toastr çalışıyor', 'Test', { timeOut: 2000 });
+    //this.toast.message('Toastr çalışıyor', ToastrMessageType.Success, 'Test', ToastrPosition.TopRight, {timeOut: 2000 });
   }
 }
