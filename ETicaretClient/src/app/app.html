@@ -23,15 +23,17 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+      <div class="ms-2">
+        <button class="btn btn-primary me-1" type="button" (click)="showSpinner()">Show Spinner</button>
+        <button class="btn btn-secondary" type="button" (click)="hideSpinner()">Hide Spinner</button>
+      </div>
     </div>
   </div>
 </nav>
 
 <router-outlet></router-outlet>
-<ngx-spinner
-  bdColor="rgba(0,0,0,0.3)"
-  size="medium"
-  color="#fff"
-  type="ball-scale-multiple"
-  [fullScreen]="true">
+
+<!-- Demo control buttons and fullscreen spinner -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+  <p style="color: white; margin: 0;">Loading...</p>
 </ngx-spinner>
