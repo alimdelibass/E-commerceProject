@@ -16,24 +16,16 @@ namespace ETicaretAPI.API.Controllers
             _productWriteRepository = productWriteRepository;
             _productReadRepository = productReadRepository;
         }
-        [HttpPost]
-        public async Task<IActionResult> post()
+        [HttpGet]
+        public async Task<ActionResult> Get()
         {
-            await _productWriteRepository.AddRangeAsync(new()
-            {
-                new(){Id = Guid.NewGuid(), Name = "supurge", stock = 5 , Price= 25000,CreateDate = DateTime.UtcNow},
-                new(){Id = Guid.NewGuid(), Name = "kahve makinası", stock = 5 , Price= 25000,CreateDate = DateTime.UtcNow},
-                new(){Id = Guid.NewGuid(), Name = "Telefon", stock = 5 , Price= 25000,CreateDate = DateTime.UtcNow}
-            });
-           await  _productWriteRepository.SaveAsync();
-
-            return Ok();
-        }
-        [HttpGet("{id}")]
-        public async Task<ActionResult> Get(string id)
-        {
-            var product = await _productReadRepository.GetByIdAsync(id);
+            var product = await _productReadRepository.GetAll();
             return Ok(product);
+        }
+        [HttpPost]
+        public async Task<ActionResult> Post(Product model)
+        {
+            return Ok();
         }
     }
 }
