@@ -19,13 +19,8 @@ namespace ETicaretAPI.API.Controllers
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            var product = await _productReadRepository.GetAll();
+            var product = _productReadRepository.GetAll();
             return Ok(product);
-        }
-        [HttpPost]
-        public async Task<ActionResult> Post(Product model)
-        {
-            return Ok();
         }
     }
 }

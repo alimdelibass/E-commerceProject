@@ -15,7 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withInterceptorsFromDi()),
     
-    { provide: BASE_URL, useValue: 'https://api.example.com' },
+    { provide: BASE_URL, useValue: 'http://localhost:5292' },
 
     // ngx-spinner
     importProvidersFrom(

@@ -1,1 +1,23 @@
-<p>products works!</p>
+<div>
+  <h2>Products Component Loaded</h2>
+  <p>Total Products: {{ products.length }}</p>
+</div>
+
+<table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Adı</th>
+      <th>Fiyat</th>
+      <th>Açıklama</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.description }}</td>
+    </tr>
+  </tbody>
+</table>
