@@ -1,1 +1,40 @@
-<p>orders works!</p>
+<div class="orders-container">
+  <h2>Sipariş Yönetimi</h2>
+  
+  <div class="stats">
+    <p>Toplam Sipariş: {{ orders.length }}</p>
+  </div>
+
+  <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Müşteri ID</th>
+        <th>Toplam Fiyat</th>
+        <th>Açıklama</th>
+        <th>Durum</th>
+        <th>İşlemler</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.customerId }}</td>
+        <td>{{ order.totalPrice }} ₺</td>
+        <td>{{ order.description }}</td>
+        <td>
+          <span [ngClass]="'status-' + order.orderStatus.toLowerCase()">
+            {{ order.orderStatus }}
+          </span>
+        </td>
+        <td>
+          <button (click)="deleteOrder(order.id)" class="delete-btn">Sil</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="orders.length === 0" class="no-data">
+    Sipariş kaydı bulunamadı
+  </div>
+</div>

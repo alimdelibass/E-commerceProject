@@ -1,1 +1,44 @@
-<p>customers works!</p>
+<div class="customers-container">
+  <h2>Müşteri Yönetimi</h2>
+  
+  <div class="stats">
+    <p>Toplam Müşteri: {{ customers.length }}</p>
+  </div>
+
+  <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Email</th>
+        <th>Telefon</th>
+        <th>Durum</th>
+        <th>Siparle Sayısı</th>
+        <th>İşlemler</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{ customer.id }}</td>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.surname }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.phoneNumber }}</td>
+        <td>
+          <span [ngClass]="customer.isActive ? 'status-active' : 'status-inactive'">
+            {{ customer.isActive ? 'Aktif' : 'Pasif' }}
+          </span>
+        </td>
+        <td>{{ customer.totalOrderCount }}</td>
+        <td>
+          <button (click)="deleteCustomer(customer.id)" class="delete-btn">Sil</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="customers.length === 0" class="no-data">
+    Müşteri kaydı bulunamadı
+  </div>
+</div>

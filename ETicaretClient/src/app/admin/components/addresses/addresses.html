@@ -1,0 +1,86 @@
+<div class="addresses-container">
+  <h2>Adres Yönetimi</h2>
+  
+  <button (click)="toggleForm()" class="add-btn">
+    {{ showForm ? 'İptal' : 'Yeni Adres Ekle' }}
+  </button>
+
+  <div *ngIf="showForm" class="form-container">
+    <h3>Yeni Adres Oluştur</h3>
+    <form>
+      <div class="form-group">
+        <label>Müşteri ID:</label>
+        <input [(ngModel)]="newAddress.customerId" name="customerId" type="text" placeholder="Müşteri ID'sini girin" required>
+      </div>
+
+      <div class="form-group">
+        <label>Başlık:</label>
+        <input [(ngModel)]="newAddress.title" name="title" type="text" placeholder="Adres başlığı (Ev, İş, vb.)" required>
+      </div>
+
+      <div class="form-group">
+        <label>Şehir:</label>
+        <input [(ngModel)]="newAddress.city" name="city" type="text" placeholder="Şehir" required>
+      </div>
+
+      <div class="form-group">
+        <label>İlçe:</label>
+        <input [(ngModel)]="newAddress.district" name="district" type="text" placeholder="İlçe" required>
+      </div>
+
+      <div class="form-group">
+        <label>Tam Adres:</label>
+        <textarea [(ngModel)]="newAddress.fullAddress" name="fullAddress" placeholder="Tam adresi girin" required></textarea>
+      </div>
+
+      <div class="form-group checkbox">
+        <label>
+          <input [(ngModel)]="newAddress.isDefault" name="isDefault" type="checkbox">
+          Varsayılan Adres
+        </label>
+      </div>
+
+      <button type="button" (click)="createAddress()" class="submit-btn">Adres Ekle</button>
+    </form>
+  </div>
+
+  <div class="stats">
+    <p>Toplam Adres: {{ addresses.length }}</p>
+  </div>
+
+  <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Müşteri ID</th>
+        <th>Başlık</th>
+        <th>Şehir</th>
+        <th>İlçe</th>
+        <th>Tam Adres</th>
+        <th>Varsayılan</th>
+        <th>İşlemler</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let address of addresses">
+        <td>{{ address.id }}</td>
+        <td>{{ address.customerId }}</td>
+        <td>{{ address.title }}</td>
+        <td>{{ address.city }}</td>
+        <td>{{ address.district }}</td>
+        <td>{{ address.fullAddress }}</td>
+        <td>
+          <span *ngIf="address.isDefault" class="badge-default">✓ Varsayılan</span>
+          <span *ngIf="!address.isDefault" class="badge-not-default">✗</span>
+        </td>
+        <td>
+          <button (click)="deleteAddress(address.id)" class="delete-btn">Sil</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="addresses.length === 0" class="no-data">
+    Adres kaydı bulunamadı
+  </div>
+</div>

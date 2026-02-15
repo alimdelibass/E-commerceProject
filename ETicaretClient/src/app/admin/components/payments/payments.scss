@@ -1,4 +1,4 @@
-.customers-container {
+.payments-container {
   padding: 20px;
 }
 
@@ -23,11 +23,10 @@ table {
   border-collapse: collapse;
   background: white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  width: 100%;
 }
 
 thead {
-  background: #673AB7;
+  background: #4CAF50;
   color: white;
 }
 
@@ -35,15 +34,29 @@ tbody tr:hover {
   background: #f9f9f9;
 }
 
-.status-active {
+.status-pending {
+  background: #FFA500;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.status-completed {
   background: #4CAF50;
   color: white;
   padding: 5px 10px;
   border-radius: 3px;
 }
 
-.status-inactive {
-  background: #9E9E9E;
+.status-failed {
+  background: #f44336;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.status-refunded {
+  background: #2196F3;
   color: white;
   padding: 5px 10px;
   border-radius: 3px;
