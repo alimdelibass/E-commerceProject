@@ -1,12 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr-service';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, NgxSpinnerModule],
+  imports: [RouterOutlet, NgxSpinnerModule],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })

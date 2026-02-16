@@ -1,1 +1,156 @@
-<p>home works!</p>
+<div class="home-container">
+  <!-- Hero Banner Section -->
+  <section class="hero-banners">
+    <div class="main-banner">
+      <div class="banner-content">
+        <h2>Mega İndirimler Başladı!</h2>
+        <p>Seçili ürünlerde %50'ye kadar indirim</p>
+        <button class="banner-btn">Alışverişe Başla</button>
+      </div>
+      <div class="banner-image">
+        <div class="banner-emoji">🎉</div>
+      </div>
+    </div>
+
+    <!-- Mini Banners -->
+    <div class="mini-banners">
+      <div class="mini-banner">
+        <div class="mini-emoji">🚚</div>
+        <h4>Hızlı Teslimat</h4>
+        <p>Ücretsiz kargo</p>
+      </div>
+      <div class="mini-banner">
+        <div class="mini-emoji">🛡️</div>
+        <h4>Güvenli Alışveriş</h4>
+        <p>SSL Şifreli</p>
+      </div>
+      <div class="mini-banner">
+        <div class="mini-emoji">↩️</div>
+        <h4>Kolay İade</h4>
+        <p>30 gün içinde</p>
+      </div>
+      <div class="mini-banner">
+        <div class="mini-emoji">💳</div>
+        <h4>Esnek Ödeme</h4>
+        <p>Taksit seçenekleri</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Deals Section -->
+  <section class="deals-section">
+    <h2 class="section-title">Bugünün Fırsatları</h2>
+    <div class="deals-grid">
+      <div class="deal-card">
+        <div class="deal-badge">Müddate</div>
+        <div class="deal-emoji">📱</div>
+        <h4>Akıllı Telefonlar</h4>
+        <p class="deal-price">₺1,299'den başla</p>
+        <a href="#" class="deal-link">Gözat →</a>
+      </div>
+      <div class="deal-card">
+        <div class="deal-badge">Hot</div>
+        <div class="deal-emoji">💻</div>
+        <h4>Dizüstü Bilgisayarlar</h4>
+        <p class="deal-price">₺2,499'den başla</p>
+        <a href="#" class="deal-link">Gözat →</a>
+      </div>
+      <div class="deal-card">
+        <div class="deal-badge">Yeni</div>
+        <div class="deal-emoji">⌚</div>
+        <h4>Akıllı Saatler</h4>
+        <p class="deal-price">₺599'dan başla</p>
+        <a href="#" class="deal-link">Gözat →</a>
+      </div>
+      <div class="deal-card">
+        <div class="deal-badge">Flash</div>
+        <div class="deal-emoji">🎧</div>
+        <h4>Kulaklıklar</h4>
+        <p class="deal-price">₺199'dan başla</p>
+        <a href="#" class="deal-link">Gözat →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories-section">
+    <h2 class="section-title">Kategorileri Keşfet</h2>
+    <div class="categories-grid">
+      <div *ngFor="let category of categories()" 
+           class="category-card" 
+           (click)="onCategoryClick(category.name)">
+        <div class="category-emoji">{{ category.emoji }}</div>
+        <h4>{{ category.name }}</h4>
+        <p>{{ category.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section class="featured-section">
+    <div class="section-header">
+      <h2 class="section-title">En Çok Aranan Ürünler</h2>
+      <a href="#" class="see-all">Tümünü Gör →</a>
+    </div>
+    
+    <div class="products-grid">
+      <div *ngFor="let product of featuredProducts()" 
+           class="product-card">
+        <!-- Badge -->
+        <div *ngIf="product.isNew" class="badge new-badge">YENİ</div>
+        <div *ngIf="product.discount > 0" class="badge discount-badge">
+          -%{{ product.discount }}
+        </div>
+
+        <!-- Product Image -->
+        <div class="product-image">
+          <div class="emoji-container">{{ product.emoji }}</div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info">
+          <h4 class="product-name">{{ product.name }}</h4>
+          
+          <!-- Rating -->
+          <div class="rating">
+            <span class="stars">★★★★★</span>
+            <span class="reviews">({{ product.reviews }})</span>
+          </div>
+
+          <!-- Price -->
+          <div class="price-section">
+            <span class="current-price">₺{{ product.price | number:'1.0-0' }}</span>
+            <span class="original-price">₺{{ product.originalPrice | number:'1.0-0' }}</span>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="actions">
+            <button class="btn-secondary" routerLink="/products">Detay</button>
+            <button class="btn-primary" (click)="addToBasket(product)">
+              Sepete Ekle
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsored Section -->
+  <section class="sponsored-section">
+    <div class="sponsored-card">
+      <h3>Premium Üyeliğe Başla</h3>
+      <p>Ücretsiz kargo + Ekstra indirimler</p>
+      <button class="btn-sponsored">Detayları Gör</button>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter-section">
+    <h2>Haberler Bültenimize Abone Ol</h2>
+    <p>En son ürünler ve özel indirimlerden haberdar ol</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="E-posta adresinizi girin..." required>
+      <button class="btn-primary">Abone Ol</button>
+    </div>
+  </section>
+</div>
