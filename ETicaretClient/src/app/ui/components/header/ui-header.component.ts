@@ -1,11 +1,14 @@
 import { Component, OnInit, HostListener, signal } from '@angular/core';
 import { RouterLink, Router, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslationService } from '../../../services/common/translation.service';
+import { TranslatePipe } from '../../../pipes/translate.pipe';
+import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
 
 @Component({
   selector: 'app-ui-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
+  imports: [RouterLink, RouterLinkActive, CommonModule, TranslatePipe, LanguageSwitcherComponent],
   templateUrl: './ui-header.component.html',
   styleUrl: './ui-header.scss'
 })
@@ -14,7 +17,10 @@ export class UIHeaderComponent implements OnInit {
   isMenuOpen = signal(false);
   basketCount = signal(0);
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    public translationService: TranslationService
+  ) {}
 
   ngOnInit(): void {
     const savedBasket = localStorage.getItem('basket');

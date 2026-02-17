@@ -1,0 +1,73 @@
+{
+  "common": {
+    "appTitle": "E-Ticaret",
+    "home": "Anasayfa",
+    "products": "Ürünler",
+    "cart": "Sepet",
+    "account": "Hesabım",
+    "logout": "Çıkış",
+    "login": "Giriş",
+    "register": "Kayıt Ol",
+    "search": "Ara",
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "warning": "Uyarı",
+    "info": "Bilgi"
+  },
+  "admin": {
+    "dashboard": "Yönetim Paneli",
+    "customers": "Müşteriler",
+    "orders": "Siparişler",
+    "products": "Ürünler",
+    "payments": "Ödemeler",
+    "addresses": "Adresler",
+    "profile": "Profil",
+    "settings": "Ayarlar",
+    "statistics": "İstatistikler"
+  },
+  "product": {
+    "name": "Ürün Adı",
+    "price": "Fiyat",
+    "description": "Açıklama",
+    "stock": "Stok",
+    "category": "Kategori",
+    "addToCart": "Sepete Ekle",
+    "details": "Ürün Detayları",
+    "inStock": "Stokta Var",
+    "outOfStock": "Stok Yok"
+  },
+  "cart": {
+    "total": "Toplam",
+    "quantity": "Miktar",
+    "remove": "Kaldır",
+    "checkout": "Satın Al",
+    "emptyCart": "Sepetiniz Boş",
+    "continueShopping": "Alışverişe Devam Et"
+  },
+  "order": {
+    "orderNumber": "Sipariş Numarası",
+    "orderDate": "Sipariş Tarihi",
+    "status": "Durum",
+    "total": "Toplam",
+    "items": "Ürünler",
+    "pending": "Beklemede",
+    "completed": "Tamamlandı",
+    "cancelled": "İptal Edildi",
+    "shipped": "Gönderildi"
+  },
+  "validation": {
+    "required": "Bu alan gerekli",
+    "invalidEmail": "Geçersiz e-posta",
+    "minLength": "En az {value} karakter olmalıdır",
+    "maxLength": "En fazla {value} karakter olmalıdır",
+    "pattern": "Geçersiz format"
+  },
+  "messages": {
+    "deleteConfirm": "Bu işlemi onaylıyor musunuz?",
+    "deleteSuccess": "Başarıyla silindi",
+    "updateSuccess": "Başarıyla güncellendi",
+    "createSuccess": "Başarıyla oluşturuldu",
+    "loadingError": "Veriler yüklenirken hata oluştu"
+  }
+}

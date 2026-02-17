@@ -1,0 +1,73 @@
+{
+  "common": {
+    "appTitle": "E-Commerce",
+    "home": "Home",
+    "products": "Products",
+    "cart": "Cart",
+    "account": "My Account",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register",
+    "search": "Search",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information"
+  },
+  "admin": {
+    "dashboard": "Admin Dashboard",
+    "customers": "Customers",
+    "orders": "Orders",
+    "products": "Products",
+    "payments": "Payments",
+    "addresses": "Addresses",
+    "profile": "Profile",
+    "settings": "Settings",
+    "statistics": "Statistics"
+  },
+  "product": {
+    "name": "Product Name",
+    "price": "Price",
+    "description": "Description",
+    "stock": "Stock",
+    "category": "Category",
+    "addToCart": "Add to Cart",
+    "details": "Product Details",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock"
+  },
+  "cart": {
+    "total": "Total",
+    "quantity": "Quantity",
+    "remove": "Remove",
+    "checkout": "Checkout",
+    "emptyCart": "Your Cart is Empty",
+    "continueShopping": "Continue Shopping"
+  },
+  "order": {
+    "orderNumber": "Order Number",
+    "orderDate": "Order Date",
+    "status": "Status",
+    "total": "Total",
+    "items": "Items",
+    "pending": "Pending",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "shipped": "Shipped"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "minLength": "Must be at least {value} characters",
+    "maxLength": "Must be no more than {value} characters",
+    "pattern": "Invalid format"
+  },
+  "messages": {
+    "deleteConfirm": "Are you sure you want to proceed?",
+    "deleteSuccess": "Deleted successfully",
+    "updateSuccess": "Updated successfully",
+    "createSuccess": "Created successfully",
+    "loadingError": "An error occurred while loading the data"
+  }
+}
