@@ -1,0 +1,54 @@
+<div class="create-form-container">
+  <h3>Yeni Ürün Ekle</h3>
+  
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="create-form">
+    <div class="form-group">
+      <label for="name">Ürün Adı:</label>
+      <input 
+        type="text" 
+        id="name" 
+        formControlName="name" 
+        class="form-input"
+        [class.is-invalid]="submitted && f['name'].invalid"
+      />
+      <div class="error-message" *ngIf="submitted && f['name'].invalid">
+        <span *ngIf="f['name'].errors?.['required']">Ürün adı gereklidir</span>
+        <span *ngIf="f['name'].errors?.['minlength']">En az 3 karakter olmalıdır</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Fiyat:</label>
+      <input 
+        type="number" 
+        id="price" 
+        formControlName="price" 
+        class="form-input"
+        [class.is-invalid]="submitted && f['price'].invalid"
+      />
+      <div class="error-message" *ngIf="submitted && f['price'].invalid">
+        <span *ngIf="f['price'].errors?.['required']">Fiyat gereklidir</span>
+        <span *ngIf="f['price'].errors?.['min']">Fiyat 0'dan büyük olmalıdır</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Açıklama:</label>
+      <textarea 
+        id="description" 
+        formControlName="description" 
+        class="form-input"
+        [class.is-invalid]="submitted && f['description'].invalid"
+        rows="4"
+      ></textarea>
+      <div class="error-message" *ngIf="submitted && f['description'].invalid">
+        <span *ngIf="f['description'].errors?.['required']">Açıklama gereklidir</span>
+        <span *ngIf="f['description'].errors?.['minlength']">En az 5 karakter olmalıdır</span>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-submit" [disabled]="isLoading">
+      {{ isLoading ? 'Yükleniyor...' : 'Ürün Oluştur' }}
+    </button>
+  </form>
+</div>

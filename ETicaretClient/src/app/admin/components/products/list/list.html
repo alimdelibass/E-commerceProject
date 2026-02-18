@@ -1,0 +1,38 @@
+<div class="list-container">
+  <h3>Ürün Listesi</h3>
+  
+  <div *ngIf="isLoading" class="loading-message">
+    Yükleniyor...
+  </div>
+
+  <div *ngIf="!isLoading && products.length === 0" class="no-products-message">
+    Hiç ürün bulunamadı
+  </div>
+
+  <div *ngIf="!isLoading && products.length > 0" class="products-table-wrapper">
+    <table class="products-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Ürün Adı</th>
+          <th>Fiyat</th>
+          <th>Açıklama</th>
+          <th>İşlem</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products" class="product-row">
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price | currency:'USD' }}</td>
+          <td>{{ product.description }}</td>
+          <td>
+            <button class="btn-delete" (click)="deleteProduct(product.id)" [disabled]="deleteLoadingId === product.id">
+              {{ deleteLoadingId === product.id ? 'Siliniyor...' : 'Sil' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
