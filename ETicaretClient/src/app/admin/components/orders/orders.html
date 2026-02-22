@@ -2,39 +2,41 @@
   <h2>Sipariş Yönetimi</h2>
   
   <div class="stats">
-    <p>Toplam Sipariş: {{ orders.length }}</p>
+    <p>📦 Toplam Sipariş: <strong>{{ orders.length }}</strong></p>
   </div>
 
-  <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Müşteri ID</th>
-        <th>Toplam Fiyat</th>
-        <th>Açıklama</th>
-        <th>Durum</th>
-        <th>İşlemler</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let order of orders">
-        <td>{{ order.id }}</td>
-        <td>{{ order.customerId }}</td>
-        <td>{{ order.totalPrice }} ₺</td>
-        <td>{{ order.description }}</td>
-        <td>
-          <span [ngClass]="'status-' + order.orderStatus.toLowerCase()">
-            {{ order.orderStatus }}
-          </span>
-        </td>
-        <td>
-          <button (click)="deleteOrder(order.id)" class="delete-btn">Sil</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div style="overflow-x: auto;">
+    <table border="0" cellpadding="0" cellspacing="0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Müşteri ID</th>
+          <th>Toplam Fiyat</th>
+          <th>Açıklama</th>
+          <th>Durum</th>
+          <th>İşlemler</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td><strong>#{{ order.id }}</strong></td>
+          <td>{{ order.customerId }}</td>
+          <td><strong>{{ order.totalPrice }} ₺</strong></td>
+          <td>{{ order.description }}</td>
+          <td>
+            <span [ngClass]="'status-' + order.orderStatus.toLowerCase()">
+              {{ order.orderStatus }}
+            </span>
+          </td>
+          <td>
+            <button (click)="deleteOrder(order.id)" class="delete-btn" title="Sil">🗑️ Sil</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <div *ngIf="orders.length === 0" class="no-data">
-    Sipariş kaydı bulunamadı
+    <p>📋 Sipariş kaydı bulunamadı</p>
   </div>
 </div>

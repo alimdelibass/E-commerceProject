@@ -2,39 +2,41 @@
   <h2>Ödeme Yönetimi</h2>
   
   <div class="stats">
-    <p>Toplam Ödeme: {{ payments.length }}</p>
+    <p>💳 Toplam Ödeme: <strong>{{ payments.length }}</strong></p>
   </div>
 
-  <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Sipariş ID</th>
-        <th>Tutar</th>
-        <th>Ödeme Yöntemi</th>
-        <th>Durum</th>
-        <th>İşlemler</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let payment of payments">
-        <td>{{ payment.id }}</td>
-        <td>{{ payment.orderId }}</td>
-        <td>{{ payment.amount }} ₺</td>
-        <td>{{ payment.paymentMethod }}</td>
-        <td>
-          <span [ngClass]="'status-' + payment.paymentStatus.toLowerCase()">
-            {{ payment.paymentStatus }}
-          </span>
-        </td>
-        <td>
-          <button (click)="deletePayment(payment.id)" class="delete-btn">Sil</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div style="overflow-x: auto;">
+    <table border="0" cellpadding="0" cellspacing="0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Sipariş ID</th>
+          <th>Tutar</th>
+          <th>Ödeme Yöntemi</th>
+          <th>Durum</th>
+          <th>İşlemler</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of payments">
+          <td><strong>#{{ payment.id }}</strong></td>
+          <td>{{ payment.orderId }}</td>
+          <td><strong>{{ payment.amount }} ₺</strong></td>
+          <td>{{ payment.paymentMethod }}</td>
+          <td>
+            <span [ngClass]="'status-' + payment.paymentStatus.toLowerCase()">
+              {{ payment.paymentStatus }}
+            </span>
+          </td>
+          <td>
+            <button (click)="deletePayment(payment.id)" class="delete-btn" title="Sil">🗑️ Sil</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <div *ngIf="payments.length === 0" class="no-data">
-    Ödeme kaydı bulunamadı
+    <p>📋 Ödeme kaydı bulunamadı</p>
   </div>
 </div>

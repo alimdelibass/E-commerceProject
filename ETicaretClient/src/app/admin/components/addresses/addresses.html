@@ -1,9 +1,10 @@
 <div class="addresses-container">
-  <h2>Adres Yönetimi</h2>
-  
-  <button (click)="toggleForm()" class="add-btn">
-    {{ showForm ? 'İptal' : 'Yeni Adres Ekle' }}
-  </button>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+    <h2 style="margin: 0;">Adres Yönetimi</h2>
+    <button (click)="toggleForm()" class="add-btn">
+      {{ showForm ? '✕ İptal' : '+ Yeni Adres Ekle' }}
+    </button>
+  </div>
 
   <div *ngIf="showForm" class="form-container">
     <h3>Yeni Adres Oluştur</h3>

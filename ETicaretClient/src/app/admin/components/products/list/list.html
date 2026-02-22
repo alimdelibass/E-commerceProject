@@ -1,12 +1,12 @@
 <div class="list-container">
-  <h3>Ürün Listesi</h3>
+  <h3>📦 Ürün Listesi</h3>
   
   <div *ngIf="isLoading" class="loading-message">
-    Yükleniyor...
+    ⏳ Yükleniyor...
   </div>
 
   <div *ngIf="!isLoading && products.length === 0" class="no-products-message">
-    Hiç ürün bulunamadı
+    📋 Hiç ürün bulunamadı
   </div>
 
   <div *ngIf="!isLoading && products.length > 0" class="products-table-wrapper">
@@ -22,13 +22,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let product of products" class="product-row">
-          <td>{{ product.id }}</td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.price | currency:'USD' }}</td>
+          <td><strong>#{{ product.id }}</strong></td>
+          <td><strong>{{ product.name }}</strong></td>
+          <td><strong>{{ product.price | currency:'TRY':'symbol':'1.2-2' }}</strong></td>
           <td>{{ product.description }}</td>
           <td>
-            <button class="btn-delete" (click)="deleteProduct(product.id)" [disabled]="deleteLoadingId === product.id">
-              {{ deleteLoadingId === product.id ? 'Siliniyor...' : 'Sil' }}
+            <button class="btn-delete" (click)="deleteProduct(product.id)" [disabled]="deleteLoadingId === product.id" title="Sil">
+              {{ deleteLoadingId === product.id ? '⏳...' : '🗑️ Sil' }}
             </button>
           </td>
         </tr>

@@ -1,20 +1,37 @@
 .products-container {
-  padding: 20px;
-  max-width: 1200px;
+  padding: 32px;
+  max-width: 1400px;
   margin: 0 auto;
+  background: #F8FAFC;
+  min-height: 100vh;
 
   h1 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 30px;
-    text-align: center;
+    color: #1F2937;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    text-align: left;
+    letter-spacing: -0.5px;
   }
 
   .create-section {
-    margin-bottom: 40px;
+    margin-bottom: 48px;
+    animation: slideInUp 0.3s ease-out;
   }
 
   .list-section {
-    margin-top: 30px;
+    margin-top: 40px;
+    animation: slideInUp 0.3s ease-out 0.1s both;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

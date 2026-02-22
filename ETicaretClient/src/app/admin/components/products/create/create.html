@@ -1,5 +1,5 @@
 <div class="create-form-container">
-  <h3>Yeni Ürün Ekle</h3>
+  <h3>✨ Yeni Ürün Ekle</h3>
   
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="create-form">
     <div class="form-group">
@@ -9,6 +9,7 @@
         id="name" 
         formControlName="name" 
         class="form-input"
+        placeholder="Ürün adını girin"
         [class.is-invalid]="submitted && f['name'].invalid"
       />
       <div class="error-message" *ngIf="submitted && f['name'].invalid">
@@ -18,12 +19,13 @@
     </div>
 
     <div class="form-group">
-      <label for="price">Fiyat:</label>
+      <label for="price">Fiyat (₺):</label>
       <input 
         type="number" 
         id="price" 
         formControlName="price" 
         class="form-input"
+        placeholder="0.00"
         [class.is-invalid]="submitted && f['price'].invalid"
       />
       <div class="error-message" *ngIf="submitted && f['price'].invalid">
@@ -38,6 +40,7 @@
         id="description" 
         formControlName="description" 
         class="form-input"
+        placeholder="Ürün açıklamasını girin"
         [class.is-invalid]="submitted && f['description'].invalid"
         rows="4"
       ></textarea>
@@ -48,7 +51,7 @@
     </div>
 
     <button type="submit" class="btn-submit" [disabled]="isLoading">
-      {{ isLoading ? 'Yükleniyor...' : 'Ürün Oluştur' }}
+      {{ isLoading ? '⏳ Yükleniyor...' : '➕ Ürün Oluştur' }}
     </button>
   </form>
 </div>

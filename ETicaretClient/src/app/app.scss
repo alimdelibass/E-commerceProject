@@ -1,1 +1,43 @@
-/* app styles (spinner helper styles removed) */
+/* app styles */
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+app-root {
+  display: block;
+  height: 100%;
+}
+
+/* Material Design Updates */
+::ng-deep {
+  .mat-toolbar {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid #E5E7EB;
+  }
+
+  .mat-drawer {
+    border-right: 1px solid #E5E7EB;
+  }
+
+  .mat-button, .mat-raised-button {
+    font-family: 'Inter', sans-serif;
+    text-transform: none;
+    font-weight: 500;
+  }
+
+  .mat-form-field {
+    width: 100%;
+
+    .mat-form-field-label {
+      font-family: 'Inter', sans-serif;
+    }
+  }
+
+  .mat-snack-bar {
+    .mat-simple-snackbar {
+      font-family: 'Inter', sans-serif;
+    }
+  }
+}
