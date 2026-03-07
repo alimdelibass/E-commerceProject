@@ -1,23 +1,26 @@
-import { Component, OnInit, inject, Input, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, inject, Input, PLATFORM_ID, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { AlertifyService, MessageType, Position } from '../../../../services/admin/alertify';
 import { ProductService } from '../../../../services/common/models/product';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CommonModule, MatTableModule],
+  imports: [CommonModule, MatTableModule, MatPaginatorModule],
   templateUrl: './list.html',
   styleUrl: './list.scss',
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, AfterViewInit {
   private alertify = inject(AlertifyService);
   private productService = inject(ProductService);
   private platformId = inject(PLATFORM_ID);
   
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  
   displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'actions'];
-  products: any[] = [];
+  dataSource = new MatTableDataSource<any>([]);
   isLoading = false;
   deleteLoadingId: string | null = null;
 
@@ -27,11 +30,15 @@ export class ListComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
+
   getProducts(): void {
     this.isLoading = true;
     this.productService.getProducts().subscribe({
       next: (data) => {
-        this.products = data;
+        this.dataSource.data = data;
         this.isLoading = false;
       },
       error: (err) => {
