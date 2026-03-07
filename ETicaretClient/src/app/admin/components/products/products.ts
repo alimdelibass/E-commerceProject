@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientService } from '../../../services/common/http-client';
 import { CreateComponent } from './create/create';
@@ -12,6 +12,8 @@ import { ListComponent } from './list/list';
   styleUrl: './products.scss',
 })
 export class Products implements OnInit {
+  @ViewChild('listComponent') listComponent: ListComponent;
+  
   private httpClientService = inject(HttpClientService);
   products: any[] = [];
 
@@ -34,7 +36,7 @@ export class Products implements OnInit {
   }
 
   onProductCreated(): void {
-    this.getProducts();
+    this.listComponent?.getProducts();
   }
 
   createProduct(product: any): void {

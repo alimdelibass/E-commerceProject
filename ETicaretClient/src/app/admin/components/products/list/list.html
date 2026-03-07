@@ -9,30 +9,45 @@
     📋 Hiç ürün bulunamadı
   </div>
 
-  <div *ngIf="!isLoading && products.length > 0" class="products-table-wrapper">
-    <table class="products-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Ürün Adı</th>
-          <th>Fiyat</th>
-          <th>Açıklama</th>
-          <th>İşlem</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let product of products" class="product-row">
-          <td><strong>#{{ product.id }}</strong></td>
-          <td><strong>{{ product.name }}</strong></td>
-          <td><strong>{{ product.price | currency:'TRY':'symbol':'1.2-2' }}</strong></td>
-          <td>{{ product.description }}</td>
-          <td>
-            <button class="btn-delete" (click)="deleteProduct(product.id)" [disabled]="deleteLoadingId === product.id" title="Sil">
-              {{ deleteLoadingId === product.id ? '⏳...' : '🗑️ Sil' }}
-            </button>
-          </td>
-        </tr>
-      </tbody>
+  <div *ngIf="!isLoading && products.length > 0" class="mat-table-wrapper">
+    <table mat-table [dataSource]="products" class="products-mat-table">
+      
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Ürün Adı</th>
+        <td mat-cell *matCellDef="let product">{{ product.name }}</td>
+      </ng-container>
+
+      <!-- Stock Column -->
+      <ng-container matColumnDef="stock">
+        <th mat-header-cell *matHeaderCellDef>Stok</th>
+        <td mat-cell *matCellDef="let product">{{ product.stock }}</td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Fiyat</th>
+        <td mat-cell *matCellDef="let product">{{ product.price | currency:'TRY':'symbol':'1.2-2' }}</td>
+      </ng-container>
+
+      <!-- Created Date Column -->
+      <ng-container matColumnDef="createdDate">
+        <th mat-header-cell *matHeaderCellDef>Oluşturulma Tarihi</th>
+        <td mat-cell *matCellDef="let product">{{ product.createDate | date:'dd/MM/yyyy HH:mm' }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>İşlem</th>
+        <td mat-cell *matCellDef="let product">
+          <button class="btn-delete" (click)="deleteProduct(product.id)" [disabled]="deleteLoadingId === product.id">
+            {{ deleteLoadingId === product.id ? '⏳...' : '🗑️ Sil' }}
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
 </div>

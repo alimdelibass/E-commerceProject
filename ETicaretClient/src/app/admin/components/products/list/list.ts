@@ -1,25 +1,30 @@
-import { Component, OnInit, inject, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject, Input, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
 import { AlertifyService, MessageType, Position } from '../../../../services/admin/alertify';
 import { ProductService } from '../../../../services/common/models/product';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatTableModule],
   templateUrl: './list.html',
   styleUrl: './list.scss',
 })
 export class ListComponent implements OnInit {
   private alertify = inject(AlertifyService);
   private productService = inject(ProductService);
+  private platformId = inject(PLATFORM_ID);
   
+  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'actions'];
   products: any[] = [];
   isLoading = false;
   deleteLoadingId: string | null = null;
 
   ngOnInit(): void {
-    this.getProducts();
+    if (isPlatformBrowser(this.platformId)) {
+      this.getProducts();
+    }
   }
 
   getProducts(): void {
