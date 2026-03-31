@@ -1,12 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Domain.Entities;
+using MediatR;
 
 namespace ETicaretAPI.Application.Features.Commands.CreateProduct
 {
-    internal class CreateProductCommandHandler
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest, CreateProductCommandResponse>
     {
+        readonly IProductWriteRepository _productWriteRepository;
+
+        public CreateProductCommandHandler(IProductWriteRepository productWriteRepository)
+        {
+            _productWriteRepository = productWriteRepository;
+        }
+
+        public async Task<CreateProductCommandResponse> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
+        {
+            await _productWriteRepository.AddAsync(new Product
+            {
+                Name = request.Name,
+                stock = request.Stock,
+                Price = request.Price
+            });
+            await _productWriteRepository.SaveAsync();
+
+            return new CreateProductCommandResponse();
+        }
     }
 }

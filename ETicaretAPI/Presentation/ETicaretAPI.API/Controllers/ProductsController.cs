@@ -1,6 +1,8 @@
-﻿using ETicaretAPI.Application.Repositories;
-using ETicaretAPI.Application.ViewModels.Products;
+﻿using ETicaretAPI.Application.Features.Commands.CreateProduct;
+using ETicaretAPI.Application.Features.Queries.GetAllProduct;
+using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,20 +12,22 @@ namespace ETicaretAPI.API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        readonly private IProductWriteRepository _productWriteRepository;
-        readonly private IProductReadRepository _productReadRepository;
+        readonly IMediator _mediator;
+        readonly IProductWriteRepository _productWriteRepository;
+        readonly IProductReadRepository _productReadRepository;
 
-        public ProductsController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository)
+        public ProductsController(IMediator mediator, IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository)
         {
+            _mediator = mediator;
             _productWriteRepository = productWriteRepository;
             _productReadRepository = productReadRepository;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] GetAllProductQueryRequest request)
         {
-            var products = await _productReadRepository.GetAll(false).ToListAsync();
-            return Ok(products);
+            GetAllProductQueryResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
@@ -35,15 +39,9 @@ namespace ETicaretAPI.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateProduct model)
+        public async Task<IActionResult> Post([FromBody] CreateProductCommandRequest request)
         {
-            await _productWriteRepository.AddAsync(new Product
-            {
-                Name = model.Name,
-                stock = model.stock,
-                Price = model.Price
-            });
-            await _productWriteRepository.SaveAsync();
+            CreateProductCommandResponse response = await _mediator.Send(request);
             return StatusCode(StatusCodes.Status201Created);
         }
 
