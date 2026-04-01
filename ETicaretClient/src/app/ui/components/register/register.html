@@ -1,0 +1,93 @@
+<div class="register-container">
+  <div class="register-card">
+    <!-- Header -->
+    <div class="register-header">
+      <div class="logo-icon">👤</div>
+      <h1>Hesap Oluştur</h1>
+      <p>Alışverişe başlamak için kayıt olun</p>
+    </div>
+
+    <!-- Form -->
+    <form [formGroup]="frm" (ngSubmit)="onSubmit(frm.value)">
+      <!-- Ad Soyad -->
+      <div class="form-group">
+        <label for="adSoyad">Ad Soyad</label>
+        <div class="input-wrapper">
+          <span class="input-icon">👤</span>
+          <input
+            type="text"
+            id="adSoyad"
+            formControlName="adSoyad"
+            placeholder="Adınız Soyadınız"
+          />
+        </div>
+      </div>
+
+      <!-- Kullanıcı Adı -->
+      <div class="form-group">
+        <label for="kullaniciAdi">Kullanıcı Adı</label>
+        <div class="input-wrapper">
+          <span class="input-icon">👤</span>
+          <input
+            type="text"
+            id="kullaniciAdi"
+            formControlName="kullaniciAdi"
+            placeholder="Kullanıcı adınız"
+          />
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">E-posta</label>
+        <div class="input-wrapper">
+          <span class="input-icon">📧</span>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="ornek@email.com"
+          />
+        </div>
+      </div>
+
+      <!-- Şifre -->
+      <div class="form-group">
+        <label for="sifre">Şifre</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input
+            type="password"
+            id="sifre"
+            formControlName="sifre"
+            placeholder="Şifreniz"
+          />
+        </div>
+      </div>
+
+      <!-- Şifre Tekrar -->
+      <div class="form-group">
+        <label for="sifreTekrar">Şifre Tekrar</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input
+            type="password"
+            id="sifreTekrar"
+            formControlName="sifreTekrar"
+            placeholder="Şifrenizi tekrar girin"
+          />
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">
+        Kayıt Ol
+      </button>
+    </form>
+
+    <!-- Footer -->
+    <div class="register-footer">
+      <p>Zaten hesabınız var mı? <a routerLink="/login">Giriş Yap</a></p>
+    </div>
+  </div>
+</div>

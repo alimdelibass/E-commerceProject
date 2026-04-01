@@ -1,0 +1,149 @@
+<div class="admin-register-container">
+  <div class="register-card">
+    <!-- Header -->
+    <div class="register-header">
+      <div class="logo-icon">🛡️</div>
+      <h1>Admin Kaydı</h1>
+      <p>Yönetim paneline erişim için kayıt olun</p>
+    </div>
+
+    <!-- Form -->
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <!-- Ad Soyad Row -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">Ad</label>
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              [(ngModel)]="firstName"
+              placeholder="Adınız"
+              required
+              #firstNameInput="ngModel"
+            />
+          </div>
+          <span class="error-message" *ngIf="firstNameInput.invalid && firstNameInput.touched">
+            Ad alanı zorunludur
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Soyad</label>
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              [(ngModel)]="lastName"
+              placeholder="Soyadınız"
+              required
+              #lastNameInput="ngModel"
+            />
+          </div>
+          <span class="error-message" *ngIf="lastNameInput.invalid && lastNameInput.touched">
+            Soyad alanı zorunludur
+          </span>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">E-posta</label>
+        <div class="input-wrapper">
+          <span class="input-icon">📧</span>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="email"
+            placeholder="admin@sirket.com"
+            required
+            email
+            #emailInput="ngModel"
+          />
+        </div>
+        <span class="error-message" *ngIf="emailInput.invalid && emailInput.touched">
+          Geçerli bir e-posta adresi giriniz
+        </span>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Şifre</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            name="password"
+            [(ngModel)]="password"
+            placeholder="En az 6 karakter"
+            required
+            minlength="6"
+            #passwordInput="ngModel"
+          />
+          <button type="button" class="toggle-password" (click)="togglePassword('password')">
+            {{ showPassword ? '🙈' : '👁️' }}
+          </button>
+        </div>
+        <span class="error-message" *ngIf="passwordInput.invalid && passwordInput.touched">
+          Şifre en az 6 karakter olmalıdır
+        </span>
+      </div>
+
+      <!-- Password Confirm -->
+      <div class="form-group">
+        <label for="passwordConfirm">Şifre Tekrar</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input
+            [type]="showPasswordConfirm ? 'text' : 'password'"
+            id="passwordConfirm"
+            name="passwordConfirm"
+            [(ngModel)]="passwordConfirm"
+            placeholder="Şifrenizi tekrar girin"
+            required
+            #passwordConfirmInput="ngModel"
+          />
+          <button type="button" class="toggle-password" (click)="togglePassword('confirm')">
+            {{ showPasswordConfirm ? '🙈' : '👁️' }}
+          </button>
+        </div>
+        <span class="error-message" *ngIf="password !== passwordConfirm && passwordConfirmInput.touched">
+          Şifreler eşleşmiyor
+        </span>
+      </div>
+
+      <!-- Admin Terms -->
+      <div class="terms-checkbox">
+        <input type="checkbox" id="terms" name="terms" required #termsInput="ngModel" ngModel />
+        <label for="terms">
+          <a href="#">Admin kullanım koşullarını</a> kabul ediyorum
+        </label>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="submit-btn"
+        [disabled]="isLoading || registerForm.invalid || password !== passwordConfirm"
+      >
+        <span *ngIf="!isLoading">Admin Olarak Kayıt Ol</span>
+        <span *ngIf="isLoading" class="loading-spinner">
+          <span class="spinner"></span>
+          Kaydediliyor...
+        </span>
+      </button>
+    </form>
+
+    <!-- Footer -->
+    <div class="register-footer">
+      <p>Zaten admin hesabınız var mı? <a routerLink="/admin/login">Giriş Yap</a></p>
+      <p class="back-link"><a routerLink="/admin">← Dashboard'a Dön</a></p>
+    </div>
+  </div>
+</div>

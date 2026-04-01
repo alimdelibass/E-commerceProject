@@ -11,8 +11,15 @@ export const routes: Routes = [
     children: [
       { path: '', loadComponent: () => import('./ui/components/home/home').then(m => m.Home) },
       { path: 'products', loadComponent: () => import('./ui/components/products/products').then(m => m.Products) },
-      { path: 'basket', loadComponent: () => import('./ui/components/baskets/baskets').then(m => m.Baskets) }
+      { path: 'basket', loadComponent: () => import('./ui/components/baskets/baskets').then(m => m.Baskets) },
+      { path: 'register', loadComponent: () => import('./ui/components/register/register').then(m => m.Register) }
     ]
+  },
+
+  // Admin Register (Layout dışında - tam ekran)
+  {
+    path: 'admin/register',
+    loadComponent: () => import('./admin/components/register/register').then(m => m.AdminRegister)
   },
 
   // Admin Routes

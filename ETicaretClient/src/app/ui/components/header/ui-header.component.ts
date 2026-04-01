@@ -49,6 +49,6 @@ export class UIHeaderComponent implements OnInit {
 
   goToAdmin(): void {
     this.closeMenu();
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin/register']);
   }
 }
